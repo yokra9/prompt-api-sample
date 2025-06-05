@@ -139,7 +139,7 @@ const App = () => {
 
   return (
     <>
-      <main className="relative h-dvh">
+      <main className="grid grid-rows-[auto_1fr_80px] h-dvh">
         <div className="grid grid-cols-2 gap-4 p-4">
           {messages.map((message) => (
             <div
@@ -156,9 +156,11 @@ const App = () => {
           ></div>
         </div>
 
-        <div className="absolute bottom-4 flex justify-center w-full">
+        <div />
+
+        <div className="flex justify-center w-full">
           <textarea
-            className="border-2 p-2 border-gray-500 rounded-md w-1/3"
+            className="border-2 m-2 p-2 border-gray-500 rounded-md w-3/4"
             placeholder="プロンプトを入力。Ctrl + Enter で送信。"
             onKeyDown={onkeydownHandler}
           />
