@@ -143,7 +143,7 @@ const App = () => {
         <div className="grid grid-cols-2 gap-4 p-4">
           {messages.map((message) => (
             <div
-              className="rounded-md shadow-md p-2 first:invisible odd:bg-blue-200 even:bg-gray-200"
+              className="rounded-md shadow-md p-2 first:invisible odd:bg-blue-200 even:bg-gray-200 odd:mb-10 even:mt-10"
               key={message}
             >
               {message}
@@ -151,7 +151,7 @@ const App = () => {
           ))}
 
           <div
-            className="rounded-md shadow-md p-2 first:invisible odd:bg-blue-200 even:bg-gray-200"
+            className="rounded-md shadow-md p-2 first:invisible odd:bg-blue-200 even:bg-gray-200 odd:mb-10 even:mt-10"
             ref={currentBubbleRef}
           ></div>
         </div>
