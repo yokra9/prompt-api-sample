@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "react": "^19.1.0",
-    "react-dom": "^19.1.1",
+    "react-dom": "^19.2.0",
     "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
@@ -19,7 +19,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "@types/dom-chromium-ai": "^0.0.10",
     "@types/react": "^19.1.13",
-    "@types/react-dom": "^19.1.7",
+    "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react-swc": "^4.1.0",
     "eslint": "^9.32.0",
     "eslint-plugin-import": "^2.32.0",
