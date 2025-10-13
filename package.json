@@ -19,7 +19,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "@types/dom-chromium-ai": "^0.0.10",
     "@types/react": "^19.1.13",
-    "@types/react-dom": "^19.2.0",
+    "@types/react-dom": "^19.2.1",
     "@vitejs/plugin-react-swc": "^4.1.0",
     "eslint": "^9.32.0",
     "eslint-plugin-import": "^2.32.0",
