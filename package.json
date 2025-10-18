@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
-    "@tailwindcss/vite": "^4.1.13",
+    "@tailwindcss/vite": "^4.1.14",
     "@types/dom-chromium-ai": "^0.0.10",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.2.0",
