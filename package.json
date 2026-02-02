@@ -20,7 +20,7 @@
     "@types/dom-chromium-ai": "^0.0.13",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.2",
-    "@vitejs/plugin-react-swc": "^4.2.2",
+    "@vitejs/plugin-react-swc": "^4.2.3",
     "eslint": "^9.39.2",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react-hooks": "^7.0.1",
