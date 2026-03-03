@@ -2,6 +2,11 @@ import { useCallback, useRef, useState, type KeyboardEvent } from "react";
 
 const App = () => {
   /**
+   * テキストエリアの内容を保持するステート
+   */
+  const [prompt, setPrompt] = useState<string>("");
+
+  /**
    * 会話履歴の配列
    */
   const [messages, setMessages] = useState<string[]>([]);
@@ -117,37 +122,33 @@ const App = () => {
    * テキストエリアでキーボードを押下したときのイベントハンドラ
    */
   const onkeydownHandler = useCallback(
-    ({
-      currentTarget: { value },
-      ctrlKey,
-      metaKey,
-      code,
-    }: KeyboardEvent<HTMLTextAreaElement>) => {
+    ({ ctrlKey, metaKey, code }: KeyboardEvent<HTMLTextAreaElement>) => {
       if ([ctrlKey, metaKey].includes(true) && code === "Enter") {
         if (currentBubbleRef.current?.textContent === undefined) {
-          setMessages([...messages, value]);
+          setMessages([...messages, prompt]);
         } else {
           setMessages([
             ...messages,
             currentBubbleRef.current.textContent,
-            value,
+            prompt,
           ]);
         }
 
+        setPrompt("");
         clearBubble();
-        void generate(value);
+        void generate(prompt);
       }
     },
-    [clearBubble, generate, messages],
+    [clearBubble, generate, messages, prompt],
   );
 
   return (
     <>
       <main className="grid grid-rows-[auto_1fr_80px] h-dvh">
-        <div className="grid grid-cols-2 gap-4 p-4">
+        <div className="grid grid-cols-2 items-start gap-4 p-4">
           {messages.map((message) => (
             <div
-              className="rounded-md shadow-md p-2 first:invisible odd:bg-blue-200 even:bg-gray-200 odd:mb-10 even:mt-10"
+              className="rounded-md shadow-md p-2 odd:bg-blue-200 even:bg-gray-200 odd:mb-10 even:mt-10 first:invisible"
               key={message}
             >
               {message}
@@ -155,7 +156,7 @@ const App = () => {
           ))}
 
           <div
-            className="rounded-md shadow-md p-2 first:invisible odd:bg-blue-200 even:bg-gray-200 odd:mb-10 even:mt-10"
+            className="rounded-md shadow-md p-2 odd:bg-blue-200 even:bg-gray-200 odd:mb-10 even:mt-10 first:invisible"
             ref={currentBubbleRef}
           ></div>
         </div>
@@ -166,6 +167,10 @@ const App = () => {
           <textarea
             className="border-2 m-2 p-2 border-gray-500 rounded-md w-3/4"
             placeholder="プロンプトを入力。Ctrl + Enter で送信。"
+            value={prompt}
+            onChange={(e) => {
+              setPrompt(e.target.value);
+            }}
             onKeyDown={onkeydownHandler}
           />
         </div>
