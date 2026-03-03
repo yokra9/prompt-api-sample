@@ -50,7 +50,7 @@ const App = () => {
         addChunk2Bubble(value);
       }
     },
-    [addChunk2Bubble]
+    [addChunk2Bubble],
   );
 
   /**
@@ -66,7 +66,9 @@ const App = () => {
         return;
       }
 
-      const availability = await LanguageModel.availability();
+      const availability = await LanguageModel.availability({
+        expectedOutputs: [{ type: "text", languages: ["ja"] }],
+      });
 
       switch (availability) {
         case "unavailable":
@@ -77,14 +79,23 @@ const App = () => {
         case "downloading":
           console.error(
             "言語モデルは利用できますが、まずダウンロードの必要があります",
-            availability
+            availability,
           );
           break;
 
         case "available": {
           // セションを開始する
           if (sessionRef.current === null)
-            sessionRef.current = await LanguageModel.create();
+            sessionRef.current = await LanguageModel.create({
+              initialPrompts: [
+                {
+                  role: "system",
+                  content:
+                    "あなたは親切なアシスタントです。日本語で回答してください。",
+                },
+              ],
+              expectedOutputs: [{ type: "text", languages: ["ja"] }],
+            });
 
           // 言語モデルにプロンプトを与え、ストリームを取得する
           const stream = sessionRef.current.promptStreaming(prompt);
