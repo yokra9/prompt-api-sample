@@ -20,11 +20,7 @@ const App = () => {
    * 吹出の内容をクリアする関数
    */
   const clearBubble = useCallback(() => {
-    if (
-      currentBubbleRef.current === null ||
-      currentBubbleRef.current.textContent === null
-    )
-      return;
+    if (currentBubbleRef.current === null) return;
 
     currentBubbleRef.current.textContent = "";
   }, []);
@@ -35,11 +31,7 @@ const App = () => {
    * @param chunk 追記する文字列
    */
   const addChunk2Bubble = useCallback((chunk: string) => {
-    if (
-      currentBubbleRef.current === null ||
-      currentBubbleRef.current.textContent === null
-    )
-      return;
+    if (currentBubbleRef.current === null) return;
 
     currentBubbleRef.current.textContent += chunk;
   }, []);
@@ -51,11 +43,12 @@ const App = () => {
    */
   const readChunk = useCallback(
     async (reader: ReadableStreamDefaultReader<string>) => {
-      const { done, value } = await reader.read();
-
-      if (value !== undefined) addChunk2Bubble(value);
-
-      if (!done) await readChunk(reader);
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        addChunk2Bubble(value);
+      }
     },
     [addChunk2Bubble]
   );
@@ -106,7 +99,7 @@ const App = () => {
           availability satisfies never;
       }
     },
-    [readChunk]
+    [readChunk],
   );
 
   /**
@@ -125,7 +118,7 @@ const App = () => {
         } else {
           setMessages([
             ...messages,
-            currentBubbleRef.current.textContent ?? "",
+            currentBubbleRef.current.textContent,
             value,
           ]);
         }
@@ -134,7 +127,7 @@ const App = () => {
         void generate(value);
       }
     },
-    [clearBubble, generate, messages]
+    [clearBubble, generate, messages],
   );
 
   return (
