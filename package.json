@@ -17,7 +17,7 @@
   "devDependencies": {
     "@eslint/js": "^9.39.3",
     "@tailwindcss/vite": "^4.2.1",
-    "@types/dom-chromium-ai": "^0.0.14",
+    "@types/dom-chromium-ai": "^0.0.15",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react-swc": "^4.2.3",
