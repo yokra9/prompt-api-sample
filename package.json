@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.2.4",
+    "react": "^19.2.6",
     "react-dom": "^19.2.5",
     "tailwindcss": "^4.2.2"
   },
@@ -18,7 +18,7 @@
     "@eslint/js": "^9.39.3",
     "@tailwindcss/vite": "^4.2.2",
     "@types/dom-chromium-ai": "^0.0.15",
-    "@types/react": "^19.2.14",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react-swc": "^4.3.0",
     "eslint": "^9.39.2",
