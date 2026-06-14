@@ -1,5 +1,4 @@
 import js from "@eslint/js"
-import order from "eslint-plugin-import"
 import reactHooks from "eslint-plugin-react-hooks"
 import reactRefresh from "eslint-plugin-react-refresh"
 import globals from "globals"
@@ -21,7 +20,6 @@ export default tseslint.config(
     plugins: {
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
-      "import": order
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -39,27 +37,6 @@ export default tseslint.config(
       ],
       "quotes": ["error"],
       "semi": ["error"],
-      "import/order": [
-        "error",
-        {
-          groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
-          "newlines-between": "always",
-          alphabetize: { order: "asc", caseInsensitive: true },
-          pathGroups: [
-            {
-              pattern: "react**",
-              group: "external",
-              position: "before",
-            },
-            {
-              pattern: "@material-ui/**",
-              group: "external",
-              position: "after",
-            },
-          ],
-          pathGroupsExcludedImportTypes: ["react"],
-        },
-      ]
     },
   },
 )
